@@ -13,6 +13,7 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.advancetest.R
+import com.example.advancetest.common.const.EMPTY_STRING
 import com.example.advancetest.common.error.ErrorDomain
 import com.example.advancetest.common.error.ErrorEntity
 import com.example.advancetest.common.extension.getNavController
@@ -76,7 +77,7 @@ class MovieListFragment : Fragment() {
 
     private fun getItem(data: MovieItemDomain){
         vm.setMovie(data)
-        vm.getMovieTrailer(data.id)
+        vm.getMovieTrailer(data.id, data.title)
     }
 
     private fun setObserver(){
@@ -97,12 +98,12 @@ class MovieListFragment : Fragment() {
         }
     }
 
-    private fun openTrailerData(data: List<MovieTrailersDomain>?){
+    private fun openTrailerData(data: List<MovieTrailersDomain>?, title: String = EMPTY_STRING){
         if (data == null)
             return
         if (data.isNotEmpty()){
-            trailerDialog
-                .setTrailers(data)
+            trailerDialog.setTitle(title)
+            trailerDialog.setTrailers(data)
             showDialog(trailerDialog)
         }else{
             shortToast(getString(R.string.no_trailer))
@@ -121,7 +122,7 @@ class MovieListFragment : Fragment() {
                 binding.prBar.visibility = View.VISIBLE
             }
             is MovieState.SuccessMovie -> {
-                openTrailerData(state.data)
+                openTrailerData(state.data, state.title)
             }
             is MovieState.Error -> {
                 errorStateHandler(state.error)

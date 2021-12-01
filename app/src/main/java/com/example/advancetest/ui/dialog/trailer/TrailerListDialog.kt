@@ -66,6 +66,7 @@ class TrailerListDialog : DialogFragment()  {
 
     private fun setupBindings() {
         binding.apply {
+            tvTitle.text = title 
             rvTrailer.layoutManager = LinearLayoutManager(requireContext())
             rvTrailer.adapter = adapter
         }

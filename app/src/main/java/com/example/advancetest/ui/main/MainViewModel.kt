@@ -53,20 +53,20 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun getMovieTrailer(id:Int){
+    fun getMovieTrailer(id:Int, title:String){
         viewModelScope.launch {
             repository.ucMovieTrailer.invoke(id).collectLatest { it ->
                 _state.value = when{
                     it.isLoading -> MovieState.Loading
-                    it.data != null -> setMovieTrailer(it.data)
+                    it.data != null -> setMovieTrailer(it.data, title)
                     else -> MovieState.Error(it.error!!)
                 }
             }
         }
     }
 
-    private fun setMovieTrailer(data: List<MovieTrailersDomain>):MovieState{
+    private fun setMovieTrailer(data: List<MovieTrailersDomain>, title:String):MovieState{
         _movieTrailer.value = data
-        return MovieState.SuccessMovie(data)
+        return MovieState.SuccessMovie(data, title)
     }
 }
