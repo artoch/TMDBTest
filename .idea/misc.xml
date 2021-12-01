@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/gradient_background.xml" value="0.1962962962962963" />
+        <entry key="app/src/main/res/drawable/gradient_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/content_main.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/dialog_exit.xml" value="0.21979166666666666" />
+        <entry key="app/src/main/res/layout/dialog_trailer_list.xml" value="0.3890625" />
+        <entry key="app/src/main/res/layout/fragment_movie_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_movie_list.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.18888888888888888" />
+        <entry key="app/src/main/res/layout/item_error.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/item_poster.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/item_trailer.xml" value="0.3890625" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2390625" />
+        <entry key="app/src/main/res/xml/xxx.xml" value="0.17864583333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

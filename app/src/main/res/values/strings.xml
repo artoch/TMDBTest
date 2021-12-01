@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">advancetest</string>
+    <string name="atenci_n">ATENCIÓN</string>
+    <string name="sure_to_exit">Seguro quieres salir de advance test?</string>
+    <string name="cancel">cancelar</string>
+    <string name="accept">aceptar</string>
+    <string name="title">title</string>
+    <string name="error_connection">Error de conexión</string>
+    <string name="no_trailer">No tiene trailers</string>
+    <string name="error">Error</string>
+    <string name="retry">Volver intentar</string>
+</resources>
