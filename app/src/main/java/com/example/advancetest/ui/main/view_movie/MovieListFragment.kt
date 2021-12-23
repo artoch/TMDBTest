@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +32,7 @@ import com.example.advancetest.ui.main.view_movie.adapter.LoadItemAdapter
 import com.example.advancetest.ui.main.view_movie.adapter.PagingMovieAdapter
 import com.example.advancetest.ui.main.view_movie.adapter.withLoadStateAdapters
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class MovieListFragment : Fragment() {
@@ -84,10 +87,16 @@ class MovieListFragment : Fragment() {
         vm.getMovies()
         viewLifecycleOwner.lifecycleScope.launch {
             launch {
-                vm.movies.collect(::loadDataForRV)
+                repeatOnLifecycle(Lifecycle.State.STARTED){
+                    vm.movies.collectLatest(::loadDataForRV)
+                }
+
             }
             launch {
-                vm.state.collect(::stateHandler)
+                repeatOnLifecycle(Lifecycle.State.STARTED){
+                    vm.state.collectLatest(::stateHandler)
+                }
+
             }
         }
     }

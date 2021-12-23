@@ -69,7 +69,7 @@ class MovieDetailFragment : Fragment(){
     private fun openTrailerData(data: MovieTrailersDomain?){
         data?.let {
             initYoutube(binding.youtubePlayerView, data.key, currentTime, ::setTime)
-            vm.clearMovieState()
+            //vm.clearMovieState()
             binding.tvName.text = data.name
         }
     }

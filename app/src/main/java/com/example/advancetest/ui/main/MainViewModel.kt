@@ -17,8 +17,8 @@ class MainViewModel @Inject constructor(
     private val repository: UCMovieRepository
 ): ViewModel(){
 
-    private val _state = MutableStateFlow<MovieState>(MovieState.Nothing)
-    val state = _state.asStateFlow()
+    private val _state = MutableSharedFlow<MovieState>()
+    val state = _state.asSharedFlow()
 
     private val _movies = MutableStateFlow<PagingData<MovieItemDomain>>(PagingData.empty())
     val movies = _movies.asStateFlow()
@@ -42,7 +42,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun clearMovieState(){
-        _state.value = MovieState.Nothing
+       // _state.value = MovieState.Nothing
     }
 
     fun getMovies(){
@@ -55,12 +55,13 @@ class MainViewModel @Inject constructor(
 
     fun getMovieTrailer(id:Int, title:String){
         viewModelScope.launch {
-            repository.ucMovieTrailer.invoke(id).collectLatest { it ->
-                _state.value = when{
+            repository.ucMovieTrailer.invoke(id).collectLatest  { it ->
+                _state.emit(when{
                     it.isLoading -> MovieState.Loading
                     it.data != null -> setMovieTrailer(it.data, title)
                     else -> MovieState.Error(it.error!!)
                 }
+                )
             }
         }
     }

@@ -14,9 +14,8 @@ abstract class BaseUseCase {
         try {
             this.action()
         } catch (e: Exception) {
-            val error = e.message
             emit(errorData<T>(ErrorEntity(
-                message = error.orEmpty()
+                message = e.message.orEmpty()
             )))
         }
     }
